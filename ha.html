@@ -309,6 +309,7 @@ function search(){
 	w = w.toLowerCase();
 	var spaces='  '
 	t=t.replaceAll(spaces,' ')
+	t=t.replaceAll('　',' ')
 	if (!(t==''||t==' ')){//無と空白を禁止するのだ
 	var result = ''//検索結果
 
