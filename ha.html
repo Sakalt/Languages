@@ -6,11 +6,7 @@
 <body>
 <h1>ハ語@矛盾混沌</h1>
 <p><a href="https://twitter.com/MujunKonton">矛盾と混沌</a>による創作言語です。</p>
-<button id="button">単語検索</button>
-<input id="input"></input>
-<div class="te">
-<textarea id="result" readonly>検索結果</textarea>
-</div>
+<a href="#words"><input type="button"value="単語集へ"></a>
 <h1>概要</h1>
 
 <p>合成語をたくさん作るんご。語順は日本語完全そのまま。</p>
@@ -30,7 +26,7 @@ k s t n p m y r w<br>
 </p>
 <h2>代名詞</h2>
 <p>
-前置詞の後にくるのは必ず対格。
+形は変わらない
 </p>
 <table border="3">
 <tr><th>　</th><th></th></tr>
@@ -89,8 +85,13 @@ A+ワ+BでA=B<br>
 感謝　エエン<br>
 別れ　ヤア<br>
 </p>
-<h2>単語!!!!!どんどん追加します</h2>
+<div id="words"><h2>単語!!!!!どんどん追加します</h2></div>
 
+<button id="button">単語検索</button>
+<input id="input"></input>
+<div class="te">
+<textarea id="result" readonly>検索結果</textarea>
+</div>
 <p>
 </p>
 <p id="word">
@@ -137,9 +138,9 @@ A+ワ+BでA=B<br>
 メ　目
 モ　口
 
-ヤ　this
+ヤ　近称指示代名詞
 ユ　存在する、居る
-ヨ　that、三人称代名詞(it,they)
+ヨ　中称・遠称指示代名詞、三人称代名詞(it,they)
 
 ラ　奪格　から、起点　から
 リ　与格　に、目的地　へ
@@ -221,6 +222,12 @@ A+ワ+BでA=B<br>
 シク　歩く
 ヒト　昼
 ヒヌト　夜
+(以下、固有語)
+しあく　リンゴ
+ちう　ミカン
+ちりり　香辛料全般
+にああ　猫
+わおお　犬
 
 </p>
 </body>
@@ -282,6 +289,10 @@ var button = document.getElementById("button");//「単語検索」
 button.addEventListener("click", function(e) {
 	search();
 });
+var button2 = document.getElementById("but");//「単語集へ」
+button.addEventListener("click", function(e) {
+	search();
+});
 var input = document.getElementById('input');//検索窓
 input.addEventListener("keydown", function(e) {
 	if (e.code=='Enter'){
@@ -292,10 +303,13 @@ function search(){
 
 	var t = document.getElementById('input').value;//検索窓
 	var w = document.getElementById('word').textContent;//単語集
-	var result = ''//検索結果
-
 	t = t.toLowerCase();//すべて小文字に
 	w = w.toLowerCase();
+	var spaces='  '
+	t=t.replaceAll(spaces,' ')
+	if (!(t==''||t=='　')){//無と空白を禁止するのだ
+	var result = ''//検索結果
+
 	var ws = w.split("\n");// \nで分割
 
 	for (i=0;i < ws.length;i += 1){
@@ -310,7 +324,7 @@ function search(){
 	document.getElementById('result').value = result;//検索結果
 	var height = wd.length * 60;
 	document.getElementById('result').style.height =  height + 'px';
-
+	}
 }
 
 addEventListener('load',() => {	//単語集を改行(無理やり)
