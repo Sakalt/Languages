@@ -155,11 +155,11 @@ A it B(A:非生物過去)<br>
 <textarea id="result" readonly>検索結果</textarea>
 </div>
 <p>
-見出し語:品詞分類　意味　「訳」-補足　(活用)
-見出し語>生物と非生物で形が違うものは、生物/非生物 の順で並んでいる。
-活用>不規則名詞>主格-対格-(主格複数)-(対格複数)
-　　>不規則動詞>原形-現在-過去
-　　>代名詞(主格-対格)
+見出し語:品詞分類　意味　「訳」-補足　(活用)<br>
+見出し語>生物と非生物で形が違うものは、生物/非生物 の順で並んでいる。<br>
+活用>不規則名詞>主格-対格-(主格複数)-(対格複数)<br>
+　　>不規則動詞>原形-現在-過去<br>
+　　>代名詞(主格-対格)<br>
 である。
 </p>
 
@@ -258,9 +258,14 @@ font-size:50px;
 }
 </style>
 <script>
-var button = document.getElementById("button");
+
+var button = document.getElementById("button");//「単語検索」
 button.addEventListener("click", function(e) {
-search();
+	search();
+});
+var button2 = document.getElementById("but");//「単語集へ」
+button.addEventListener("click", function(e) {
+	search();
 });
 var input = document.getElementById('input');//検索窓
 input.addEventListener("keydown", function(e) {
@@ -270,33 +275,35 @@ input.addEventListener("keydown", function(e) {
 });
 function search(){
 
-var t = document.getElementById('input').value;//検索窓
-var w = document.getElementById('word').textContent;//単語集
-var result = ''//検索結果
+	var t = document.getElementById('input').value;//検索窓
+	var w = document.getElementById('word').textContent;//単語集
+	t = t.toLowerCase();//すべて小文字に
+	w = w.toLowerCase();
+	var spaces='  '
+	t=t.replaceAll(spaces,' ')
+	if (!(t==''||t==' ')){//無と空白を禁止するのだ
+	var result = ''//検索結果
 
-t = t.toLowerCase();//すべて小文字に
-w = w.toLowerCase();
-var ws = w.split("\n");// \nで分割
+	var ws = w.split("\n");// \nで分割
 
-for (i=0;i < ws.length;i += 1){
-var inkakko= /\(.*\)/
-ws[i]=ws[i].replace(inkakko,'')//カッコ内(活用)を消す
+	for (i=0;i < ws.length;i += 1){
+		var inkakko= /\(.*\)/
+		ws[i]=ws[i].replace(inkakko,'')//カッコ内(活用)を消す
+	}
+	var wd =  ws.filter((ww) => { return (ww.includes(t))});//検索
+	for (i=0;i < wd.length;i += 1){
+		result +=   wd[i] + '\n';
+	}
+	console.log(result)
+	document.getElementById('result').value = result;//検索結果
+	var height = wd.length * 60;
+	document.getElementById('result').style.height =  height + 'px';
+	}
 }
-var wd =  ws.filter((ww) => { return (ww.includes(t))});//検索
-for (i=0;i < wd.length;i += 1){
-result +=   wd[i] + '\n';
-}
-console.log(result)
-document.getElementById('result').value = result;//検索結果
-var height = wd.length * 60;
-document.getElementById('result').style.height =  height + 'px';
 
-}
-
-addEventListener('load',() => {
-var a='\n'
-var w = document.getElementById('word').innerHTML;//単語集
-document.getElementById('word').innerHTML = w.replaceAll('\n','<br>\n');
+addEventListener('load',() => {	//単語集を改行(無理やり)
+	var w = document.getElementById('word').innerHTML;//単語集
+	document.getElementById('word').innerHTML = w.replaceAll('\n','<br>\n');
 });
 </script>
 </html>
