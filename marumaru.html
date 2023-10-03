@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>まるまるこふこふ</title>
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+<body>
+<h1>マルコフ連鎖</h1>
+<p><a href="https://twitter.com/MujunKonton">矛盾と混沌</a>による人工無能</p>
+<button id="button">生成</button>
+<select name="level" id="level">
+  <option value="3">まともさ 3</option>
+  <option value="4">まともさ 4</option>
+  <option value="5">まともさ 5</option>
+  <option value="6">まともさ 6</option>
+  <option value="7">まともさ 7</option>
+  <option value="8">まともさ 8</option>
+  <option value="9">まともさ 9</option>
+  <option value="10">まともさ 10</option>
+  <option value="11">まともさ 11</option>
+  <option value="12">まともさ 12</option>
+</select>
+<textarea id="text"></textarea>
+</body>
+<style>
+html{
+background-image:url('a.png');
+}
+body{
+	width:90%;
+	font-size:30px;
+}
+h1{
+	margin:0px 0px
+	font-size:100px;
+	background-color:#fff;
+}
+select{
+	font-size:30px;
+}
+p{
+	background-color:#fff;
+}
+button{
+	width:50%;
+	font-size:30px;
+}
+textarea{
+	width:100%;
+	height:800px;
+	font-size:30px;
+}
+</style>
+<script src="text.js"></script>
+<script>
+function sleep(waitSec) {
+var time = 0;
+var id = setInterval(function () {
+time++;
+if (time >= waitSec){
+clearInterval(id);
+}
+});
+}
+
+var ts = [];
+var writing = false;
+var texts=new FileReader();
+var n = document.getElementById('level').value
+function learn(){
+	
+te=te.replaceAll('\n','');
+	for (i=0;i<te.length-3;i+=1){
+		ts.push(te.substr(i,n+1))
+	}
+}
+function write(){
+	n = document.getElementById('level').value
+	var t = document.getElementById('text').value;//単語
+	//t=t.replace('\n','')
+	var tx = []
+	var result =t
+	for (j=n;j>1;j-=1){
+		if (tx.length == 0){
+		for (i=0;i<ts.length;i+=1){
+		if (ts[i].substr(0,j)==t.substr(t.length-j,j)){
+		tx.push(i)
+		}
+		}
+		if (tx.length > 0){
+		result = t+ts[tx[Math.trunc(Math.random()*tx.length)]].substr(j,1);
+		i=100
+		}
+		}
+	}
+	if (result.substr(result.length-9,9)!='undefined'){
+	document.getElementById('text').value=result;
+	}
+}
+var tim = 0
+function main(){
+tim += 1
+if (tim % 3==0){
+write();
+}
+if (tim>10){tim=0;}
+if (writing==true){
+requestAnimationFrame(main);
+}
+}
+function writestart(){
+writing=true;
+requestAnimationFrame(main);
+}
+learn();
+var t = document.getElementById('text');//検索窓
+var button = document.getElementById("button");//「生成」
+button.addEventListener("touchstart", function(e) {
+	writestart();
+
+});
+button.addEventListener("mousedown", function(e) {
+	writestart();
+});
+
+button.addEventListener("touchend", function(e) {
+	writing = false;
+});
+button.addEventListener("mouseup", function(e) {
+	writing = false;
+});
+</script>
+</html>
