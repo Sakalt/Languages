@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>創作言語集</title>
+<link rel="icon" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+<body>
+<h1>ミニ日本語@矛盾混沌</h1>
+<p><a href="https://twitter.com/MujunKonton">矛盾と混沌</a>による創作言語です。</p>
+<a href="#words"><input type="button"value="単語集へ"></a>
+<h1>概要</h1>
+<p>言語の本質がコミュニケーションであるとするならば、これは良い言語である<br>
+<br>いや、そんなことないか。</p>
+<h1>音韻</h1>
+<p>音素<br>
+母音<br>
+a i u e o <br>
+子音<br>
+k s t n y r w<br>
+</p>
+<h1>文法</h1>
+<h2>文型</h2>
+<p>
+対格型。膠着語<br>
+主語-目的語-動詞という語順。<br>
+</p>
+<h2>代名詞</h2>
+<p>
+形は変わらない
+</p>
+<table border="3">
+<tr><th>　</th><th></th></tr>
+<tr><td>一人称</td><td>oira</td></tr>
+<tr><td>一人称</td><td>anta</td></tr>
+<tr><td>三人称</td><td>aitsu</td></tr>
+</table>
+<h2>命令文、疑問文、挨拶、その他</h2>
+<p>
+●複数形:<br>
+名詞重複<br>
+●命令文:<br>
+動詞の現在形を重複する(主語は必要ない。使うなら二人称を使おう)<br>
+●疑問文:<br>
+語尾を上げる<br>
+●挨拶:<br>
+適当に意味をなさない一言を言おう!<br>
+Aa!/Eo!/Yei!/Hai!
+</p>
+<h2>例文</h2>
+<p>
+あんた　あいつ　を　よい　する、あんた　よい！<br>
+汝が彼を信ずるならば、汝は善人なり！<br>
+あんた　あいつ　を　よい　ない　する、あんた　わるい！あいつ　を　よい　よい　する　する！<br>
+汝が彼を疑うならば、汝は悪人なり！彼を強く信じよ！<br><br>
+
+...おいら　わるい？<br>
+...私は変か？<br><br>
+
+あいつあいつ　あれ　した！よい　よい！<br>
+彼らは優勝した！とても良い！<br>
+</p>
+<div id="words"><h2>単語!!!!!全12語</h2></div>
+
+<button id="button">単語検索</button>
+<input id="input"></input>
+<div class="te">
+<textarea id="result" readonly>検索結果</textarea>
+</div>
+<p>
+</p>
+<p id="word">
+Oira　一人称
+Anta　二人称
+Aitsu　三人称
+Kore　近称
+Are　中称
+Sore　遠称
+Suru　動詞現在
+Sita　動詞過去
+Nani　不定称
+Nai　否定
+Yoi　良い、良いこと(重複で強調)
+Warui　悪い、悪いこと(重複で強調)
+no　属格、名詞の代用(～の物、～な物)
+(以下は仮名文字表記版)
+
+おいら　一人称
+あんた　二人称
+あいつ　三人称
+これ　近称
+あれ　中称
+それ　遠称
+する　動詞現在
+した　動詞過去
+なに　不定称
+ない　否定
+よい　良い、良いこと(重複で強調)
+わるい　悪い、悪いこと(重複で強調)
+を　対格、与格
+の　属格
+</p>
+</body>
+<style>
+html{
+	background-image:url('a.png');
+}
+body{
+	width:90%;
+	font-size:30px;
+}
+h1{
+	margin:0px 0px
+	font-size:10px;
+	background-color:#fff;
+}
+h2{
+	background-color:#fff;
+}
+p{
+	background-color:#fff;
+}
+table{
+	background-color:#fff;
+	font-size:40px;
+}
+.parent{
+	background-color:#fff;
+	display: flex;
+}
+button{
+	font-size:48px;
+}
+input{
+	width:80%;
+	font-size:60px;
+}
+#result{
+	resize: none;
+	width:100%;
+	font-size:50px;
+}
+.parent {
+	 display: flex;
+}
+ 
+.child {
+	color: #fff;
+	border: solid 1px #fff;
+	text-align: center;
+	line-height: 200px;
+	width: 200px;
+	height: 200px;
+	background-color: blue;
+}
+</style>
+<script>
+var button = document.getElementById("button");//「単語検索」
+button.addEventListener("click", function(e) {
+	search();
+});
+var button2 = document.getElementById("but");//「単語集へ」
+button.addEventListener("click", function(e) {
+	search();
+});
+var input = document.getElementById('input');//検索窓
+input.addEventListener("keydown", function(e) {
+	if (e.code=='Enter'){
+	search();
+	}
+});
+function search(){
+
+	var t = document.getElementById('input').value;//検索窓
+	var w = document.getElementById('word').textContent;//単語集
+	t = t.toLowerCase();//すべて小文字に
+	w = w.toLowerCase();
+	var spaces='  '
+	t=t.replaceAll(spaces,' ')
+	if (!(t==''||t==' ')){//無と空白を禁止するのだ
+	var result = ''//検索結果
+
+	var ws = w.split("\n");// \nで分割
+
+	for (i=0;i < ws.length;i += 1){
+		var inkakko= /\(.*\)/
+		ws[i]=ws[i].replace(inkakko,'')//カッコ内(活用)を消す
+	}
+	var wd =  ws.filter((ww) => { return (ww.includes(t))});//検索
+	for (i=0;i < wd.length;i += 1){
+		result +=   wd[i] + '\n';
+	}
+	console.log(result)
+	document.getElementById('result').value = result;//検索結果
+	var height = wd.length * 60;
+	document.getElementById('result').style.height =  height + 'px';
+	}
+}
+
+addEventListener('load',() => {	//単語集を改行(無理やり)
+	var w = document.getElementById('word').innerHTML;//単語集
+	document.getElementById('word').innerHTML = w.replaceAll('\n','<br>\n');
+});
+</script>
+</html>
