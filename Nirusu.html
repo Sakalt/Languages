@@ -758,7 +758,7 @@ function search(){
 	var height = hyojiwd * 48;
 	document.getElementById('result').style.height =  height + 'px';
 	if (window.innerWidth < window.innerHeight){//画面が細かったら文字でかくする
-	document.getElementById('result').style.height =  height*2 + 'px';
+	document.getElementById('result').style.height =  height*1.2 + 'px';
 	}
 	}
 }
@@ -769,9 +769,9 @@ addEventListener('load',() => {	//単語集を改行(無理やり)
 	if (window.innerWidth < window.innerHeight){//画面が細かったら検索欄の文字でかくする
 	document.getElementById('body').style.fontSize = '30px';
 	document.getElementById('body').style.width = '100%';
-	document.getElementById('button').style.fontSize = '100px';
-	document.getElementById('result').style.fontSize = '100px';
-	document.getElementById('input').style.fontSize = '100px';
+	document.getElementById('button').style.fontSize = '60px';
+	document.getElementById('result').style.fontSize = '60px';
+	document.getElementById('input').style.fontSize = '60px';
 
 	}
 });
