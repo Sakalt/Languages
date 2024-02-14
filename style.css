@@ -16,6 +16,8 @@ html{
 body {
 font-family: MyFont;
 font-size:30px;
+background-color:black;
+color:lime;
 }
 h1{
 margin:0px 0px
