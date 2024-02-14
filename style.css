@@ -4,7 +4,9 @@
 html{
     color:lime;
     background-image:url('0abc.png');
-    background-size:100% auto
+    background-size:100% auto;
+    background-color:black;
+    color:lime;
 }
     @font-face {
 	font-family: 'MyFont';
