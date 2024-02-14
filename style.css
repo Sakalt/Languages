@@ -1,9 +1,18 @@
 
 <style>
+
 html{
-background-image:url('a.png');
+    color:lime;
+    background-image:url('0abc.png');
+    background-size:100% auto
 }
-body{
+    @font-face {
+	font-family: 'MyFont';
+	src: url('PixelMplus12-Regular.ttf');
+}
+
+body {
+font-family: MyFont;
 width:90%;
 font-size:30px;
 }
@@ -30,9 +39,11 @@ display: flex;
 button{
 font-size:48px;
 
+font-family: MyFont;
 }
 input{
 
+font-family: MyFont;
 width:80%;
 font-size:60px;
 }
@@ -40,18 +51,21 @@ font-size:60px;
 resize: none;
 width:100%;
 font-size:50px;
+
+font-family: MyFont;
 }
 .parent {
  display: flex;
  }
  
 .child {
- color: #fff;
+ color: #0f0;
  border: solid 1px #fff;
  text-align: center;
  line-height: 200px;
  width: 200px;
  height: 200px;
- background-color: blue;
+ background-color: black;
+ font-family: MyFont;
 }
 </style>
