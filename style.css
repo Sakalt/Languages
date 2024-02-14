@@ -33,19 +33,19 @@ display: flex;
 button{
 font-size:48px;
 background-color:black;
-    color:lime
+color:lime;
 font-family: MyFont;
 }
 input{
 background-color:black;
-    color:lime
+color:lime;
 font-family: MyFont;
 width:80%;
 font-size:60px;
 }
 #result{
 background-color:black;
-    color:lime
+color:lime;
 resize: none;
 width:100%;
 font-size:50px;
