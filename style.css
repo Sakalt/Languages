@@ -1,3 +1,57 @@
+
 <style>
-	
+html{
+background-image:url('a.png');
+}
+body{
+width:90%;
+font-size:30px;
+}
+h1{
+margin:0px 0px
+font-size:10px;
+background-color:#fff;
+}
+h2{
+background-color:#fff;
+}
+p{
+background-color:#fff;
+}
+table{
+
+background-color:#fff;
+font-size:40px;
+}
+.parent{
+background-color:#fff;
+display: flex;
+}
+button{
+font-size:48px;
+
+}
+input{
+
+width:80%;
+font-size:60px;
+}
+#result{
+resize: none;
+width:100%;
+font-size:50px;
+}
+.parent {
+ display: flex;
+ }
+ 
+.child {
+ color: #fff;
+ border: solid 1px #fff;
+ text-align: center;
+ line-height: 200px;
+ width: 200px;
+ height: 200px;
+ background-color: blue;
+}
 </style>
