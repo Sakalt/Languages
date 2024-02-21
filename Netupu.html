@@ -48,7 +48,7 @@
 <p></p>
 <a href="#words"><h1 style="background-color:#0000ff; color:#fff;border-color: #fff;">単語集へ</h1></a>
 <p></p>
-<h1 id="language" style="background-color:#55f; color:#fff ;border-color: #fff;">ネトゥプ文字に</h1>
+<h1 id="language" style="background-color:#55f; color:#fff ;border-color: #fff;">クリックでネトゥプ文字に</h1>
 <h1>概要</h1>
 	<p>
 		元々<a href="Nirusu.html">ニールス語</a>の改革案として作ったが全くの別言語になってしまった…<br>
@@ -854,8 +854,8 @@ button.addEventListener("click", function(e) {
 
 var change = document.getElementById("language");//"文字"
 change.addEventListener("click", function(e) {
-	if (document.getElementById('language').innerHTML=='ラテン文字に'){
-		document.getElementById('language').innerHTML='ネトゥプ文字に';
+	if (document.getElementById('language').innerHTML=='クリックでラテン文字に'){
+		document.getElementById('language').innerHTML='クリックでネトゥプ文字に';
 		// pタグの要素をすべて取得する
 		let pElements = document.querySelectorAll("p");
 		// 取得した要素に対して繰り返し処理を行う
@@ -864,8 +864,8 @@ change.addEventListener("click", function(e) {
 		  pElement.style.fontFamily = "Arial, Helvetica, sans-serif";
 		  pElement.style.fontSize ='30px';
 		});
-	}else if (document.getElementById('language').innerHTML=='ネトゥプ文字に'){
-		document.getElementById('language').innerHTML='ラテン文字に';
+	}else if (document.getElementById('language').innerHTML=='クリックでネトゥプ文字に'){
+		document.getElementById('language').innerHTML='クリックでラテン文字に';
 		// pタグの要素をすべて取得する
 		let pElements = document.querySelectorAll("p");
 		// 取得した要素に対して繰り返し処理を行う
