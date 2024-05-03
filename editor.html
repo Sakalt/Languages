@@ -1,0 +1,303 @@
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+おい
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+お前
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+何見てんだよ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+汚いから見ないでほしいな
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<style>
+    html{
+        font-size: large;
+    }
+    #p{
+        visibility: visible;
+    }
+    #text{
+        height: 95%;
+        width: 95%;
+        resize: none;
+        border: 0px;
+        font-size: large;
+    }
+    #text2{
+        width: 95%;
+        height: 30%;
+        border: 0px;
+        visibility: visible;
+        font-size: large;
+    }
+    button{
+        font-size: large;
+    }
+</style>
+
+<p id="p">↓変換される文字列/変化後の文字列　のように表記してね</p>
+<textarea id="text2" placeholder="(例)gh/ɣ"></textarea>
+<button id="button">変換テキストを非表示</button>
+<textarea id="text"></textarea>
+<script>
+const p = document.getElementById('p');
+const text2 = document.getElementById('text2');
+const text = document.getElementById('text');
+const button = document.getElementById('button');
+
+
+
+    //var ct=['sh/š','ch/č','th/þ','dh/ð','qq/ʔ','hh/ç','ae/ä','ee/é','oe/ə','gh/ɣ','ih/ĩ','ah/ã','nh/ñ','oo/ó','ng/ŋ','ŋg/n​g','uh/ũ','zh/ž']
+text.addEventListener('keyup', (event) => { var v = event.target.value 
+    var ct=text2.value.split(/\n/)
+    ct=ct.filter((element) => {
+        var nakami=element.split('/');
+        if (nakami.length==2){
+            if (nakami[0]!=''){
+                return element
+            }
+        }
+    });
+    for (i=0;i<ct.length;i+=1){
+         var a=ct[i].split('/');
+        v=v.replace(a[0],a[1]);
+    }
+    
+    document.getElementById("text").value=v;
+}); 
+button.addEventListener('click', function() {
+    if (button.innerHTML=="変換テキストを非表示"){
+        p.style.visibility="hidden"
+        text2.style.visibility="hidden"
+        text2.style.height="0px"
+        button.innerHTML="変換テキストを表示"
+    }else if (button.innerHTML=="変換テキストを表示"){
+        p.style.visibility="visible"
+        text2.style.visibility="visible"
+        button.innerHTML="変換テキストを非表示"
+        text2.style.height="30%"
+    }
+}); 
+addEventListener("load", (event) => { 
+    text2.innerHTML=localStorage.getItem('text')
+});
+text2.addEventListener('change' ,(event)=>{var v= text2.value
+    localStorage.setItem('text',v)
+})
+</script>
