@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JavaScript Upload Image</title>
+</head>
+<body>
+    <input type="file" id="file" onchange="FileValidation(event)" >
+    <br><br><br>
+    <h2>Uploaded Image by the User</h2>
+    <img id="uploaded image">
+</body>
+<script>
+    FileValidation = (event) => {
+        var uploaded_image = document.getElementById('uploaded image');
+    uploaded_image.src = URL.createObjectURL(event.target.files[0]);
+        const selected_file = document.getElementById("file");
+        if (selected_file.files.length > 0) {
+            for (const i = 0; i <= selected_file.files.length - 1; i++) {
+                const file_size = selected_file.files.item(i).size;
+
+                const file = Math.round((file_size / 1024));
+                }
+                }
+                }
+</script>
+</html>
