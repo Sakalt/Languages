@@ -1,27 +1,186 @@
 <!DOCTYPE html>
 <html>
+<style>
+
+    input{
+        font-size: 30px;
+    }
+    textarea{
+        font-size: 30px;
+        width: 80%;
+    }
+    a{
+        font-size: 20px;
+    }
+    button{
+        font-size: 30px;
+    }
+    @font-face {
+	    font-family: 'netupu';
+	    src: url('Netupu.ttf');
+    }
+    @font-face {
+	    font-family: 'jn';
+	    src: url('jn.ttf');
+    }
+    select{
+        font-size: 20px;
+    }
+</style>
 <head>
     <meta charset="utf-8">
     <title>JavaScript Upload Image</title>
 </head>
 <body>
-    <input type="file" id="file" onchange="FileValidation(event)" >
-    <br><br><br>
-    <h2>Uploaded Image by the User</h2>
-    <img id="uploaded image">
+<p><a href="Netupu.html" target="_blank">ネトゥプ語辞書へ</a></p>
+<textarea id="textarea" placeholder="文字を入力してくださいね"></textarea>
+<p><select name="select" id="select">
+    <option value="arial">Arial</option>
+    <!---<option value="pixel">Pixel</option> -->
+    <option value="netupu">ネトゥプ</option>
+    <option value="jn">ジャン</option>
+  </select>
+  <select  id="size">
+    <option value="50">50</option>
+    <option value="100">100</option>
+    <option value="200">200</option>
+    <option value="400">400</option>
+  </select>
+  <select  id="color">
+    <option value="#000">黒</option>
+    <option value="#fff">白</option>
+    <option value="#f00">赤</option>
+    <option value="#0f0">緑</option>
+    <option value="#00f">青</option>
+    <option value="#888">灰</option>
+    <option value="#88f">空</option>
+  </select>
+
+</p>
+<p><button id="button">ダウンロード</button></p>
+<p><input type="file" id="file_select"></p>
+<p><canvas id="canvas"></canvas></p>
 </body>
 <script>
-    FileValidation = (event) => {
-        var uploaded_image = document.getElementById('uploaded image');
-    uploaded_image.src = URL.createObjectURL(event.target.files[0]);
-        const selected_file = document.getElementById("file");
-        if (selected_file.files.length > 0) {
-            for (const i = 0; i <= selected_file.files.length - 1; i++) {
-                const file_size = selected_file.files.item(i).size;
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+    var size=document.getElementById("size");
+    var s=50
 
-                const file = Math.round((file_size / 1024));
-                }
-                }
-                }
-</script>
-</html>
+    const start = (fileSelectId,canvasId) =>{
+    
+        const image = new Image();
+           // 画像読み込み完了
+        image.onload =  ()=>{
+            canvas.width = image.width;
+            canvas.height = image.height;
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        };
+        image.onerror = ()=>alert("読み込めませんでした");
+    
+           // ファイル読み込み完了
+        const reader = new FileReader();
+       
+        reader.onload = () => image.src = reader.result;
+    
+        document.getElementById(fileSelectId)
+            .addEventListener("change",function(){
+                    // ファイル読み込み開始
+                reader.readAsDataURL(this.files[0]);
+            });
+    
+    };
+    window.addEventListener( "DOMContentLoaded" , ()=>
+        start("file_select","canvas")
+    );
+
+    addEventListener("load",()=>{
+    var canvasX=10000;
+    var canvasY=10000;
+    ctx.font=s+"px Arial";
+    ctx.fillText("",canvasX,canvasY);
+    ctx.font=s+"px netupu";
+    ctx.fillText("",canvasX,canvasY);
+    ctx.font=s+"px pixel";
+    ctx.fillText("",canvasX,canvasY);
+    ctx.font=s+"px jn";
+    ctx.fillText("",canvasX,canvasY);
+    ctx.font=s+"px Arial";
+    ctx.fillText("",canvasX,canvasY);
+    
+
+    })
+    
+    var sel = document.getElementById("select");
+    
+
+    sel.addEventListener("change",() => { 
+    
+        if (sel.value=="arial"){
+    ctx.font=s+"px Arial"
+    }else if (sel.value=="netupu"){
+    ctx.font=s+"px netupu"
+    }else if (sel.value=="pixel"){
+    ctx.font=s+"px pixel"
+    }else if (sel.value=="jn"){
+    ctx.font=s+"px jn"
+    }
+    });
+
+    size.addEventListener("change",() => { 
+        s=size.value;
+    });
+    var color=document.getElementById("color")
+    color.addEventListener("change",() => { 
+    ctx.fillStyle = color.value;
+    });
+
+canvas.addEventListener("click",e=>{
+ 
+    if (sel.value=="arial"){
+    ctx.font=s+"px Arial";
+    }else if (sel.value=="netupu"){
+    ctx.font=s+"px netupu";
+    }else if (sel.value=="pixel"){
+    ctx.font=s+"px pixel";
+    }else if (sel.value=="jn"){
+    ctx.font=s+"px jn";
+    }
+    var rect = e.target.getBoundingClientRect();
+
+        // ブラウザ上での座標を求める
+    var     viewX = e.clientX - rect.left,
+            viewY = e.clientY - rect.top;
+
+        // 表示サイズとキャンバスの実サイズの比率を求める
+    var     scaleWidth =  canvas.clientWidth / canvas.width,
+            scaleHeight =  canvas.clientHeight / canvas.height;
+
+        // ブラウザ上でのクリック座標をキャンバス上に変換
+    var    canvasX = Math.floor( viewX / scaleWidth ),
+            canvasY = Math.floor( viewY / scaleHeight );
+    
+    ctx.lineWidth = 2;
+    
+   console.log(ctx.font)
+    ctx.fillText("",canvasX,canvasY)
+    var textarea=document.getElementById("textarea")
+    ctx.fillText(textarea.value,canvasX,canvasY+s/2)
+    
+    
+
+});
+
+const button=document.getElementById("button")
+button.addEventListener("click",()=>{
+
+const a = document.createElement("a");
+a.href = canvas.toDataURL("image/jpeg", 0.75); // PNGなら"image/png"
+a.download = "image.jpg";
+a.click();
+
+
+})
+
+
+</script>    
